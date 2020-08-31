@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-type Employee = {
-  id: number;
-  employee_name: string;
-  employee_salaly: number;
-  employee_age: number;
-  profile_image: string;
+type Item = {
+  name: string;
+  category: string;
+  weight?: number;
 };
 
 const Items: React.FC = () => {
-  const [itemsData, setItemsData] = useState<Array<Employee>>([]);
+  const [itemsData, setItemsData] = useState<Array<Item>>([]);
 
   async function fetchItems() {
-    const res = await axios.get(
-      "http://dummy.restapiexample.com/api/v1/employees"
-    );
-    console.log(res.data.data);
-    setItemsData(res.data.data);
+    const res = await axios.get("http://localhost:4000/api/v1/items");
+    console.log(res.data);
+    setItemsData(res.data);
   }
 
   useEffect(() => {
@@ -28,9 +24,10 @@ const Items: React.FC = () => {
     <div>
       <div>Items</div>
       <ul>
-        {itemsData.map((item: Employee, index: number) => (
+        {itemsData.map((item: Item, index: number) => (
           <li key={index}>
-            {item.employee_name} ({item.employee_age})
+            {item.name} [{item.category}] (
+            {item.weight !== undefined ? item.weight : "no data"})
           </li>
         ))}
       </ul>
