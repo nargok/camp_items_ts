@@ -7,7 +7,7 @@ type Item = {
   price: number;
 };
 
-const Items: React.FC = () => {
+const ItemList: React.FC = () => {
   const [itemsData, setItemsData] = useState<Array<Item>>([]);
 
   async function fetchItems() {
@@ -28,7 +28,6 @@ const Items: React.FC = () => {
 
   return (
     <div>
-      <div>Items</div>
       <ul>
         {itemsData.map((item: Item, index: number) => (
           <li key={index}>
@@ -40,4 +39,4 @@ const Items: React.FC = () => {
   );
 };
 
-export default Items;
+export default ItemList;
