@@ -1,4 +1,5 @@
 import React from "react";
+import * as MUi from "@material-ui/core";
 
 interface ButtonProps {
   name: string;
@@ -6,8 +7,12 @@ interface ButtonProps {
   primary?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
-  return <button onClick={props.onClick}>{props.name}</button>;
+export const Button: React.FC<ButtonProps> = (props) => {
+  return (
+    <MUi.Button onClick={props.onClick} color="primary">
+      {props.name}
+    </MUi.Button>
+  );
 };
 
 export default Button;
