@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-type Employee = {
-  id: number;
-  employee_name: string;
-  employee_salaly: number;
-  employee_age: number;
-  profile_image: string;
-};
-
 type Item = {
   id: number;
   name: string;
