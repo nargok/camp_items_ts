@@ -9,12 +9,18 @@ type Employee = {
   profile_image: string;
 };
 
+type Item = {
+  id: number;
+  name: string;
+  price: number;
+};
+
 const Items: React.FC = () => {
-  const [itemsData, setItemsData] = useState<Array<Employee>>([]);
+  const [itemsData, setItemsData] = useState<Array<Item>>([]);
 
   async function fetchItems() {
     const res = await axios.get(
-      "http://dummy.restapiexample.com/api/v1/employees"
+      process.env.REACT_APP_DEV_API_HOST + "api/v1/items"
     );
     console.log(res.data.data);
     setItemsData(res.data.data);
@@ -24,13 +30,17 @@ const Items: React.FC = () => {
     fetchItems();
   }, []);
 
+  const select = () => {
+    console.log("select pushed");
+  };
+
   return (
     <div>
       <div>Items</div>
       <ul>
-        {itemsData.map((item: Employee, index: number) => (
+        {itemsData.map((item: Item, index: number) => (
           <li key={index}>
-            {item.employee_name} ({item.employee_age})
+            {item.name} ({item.price})<button onClick={select}>使う</button>
           </li>
         ))}
       </ul>
